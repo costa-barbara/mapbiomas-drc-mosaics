@@ -1,0 +1,21 @@
+# Mosaic script for countries
+- Argentina
+  - Chaco
+  - Pampa
+  - [**Patagonia and Cuyo**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Argentina_mosaics_landsat_v1.py)
+- [**Bolívia**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Bolivia_mosaics_landsat_v1.py)
+- Brazil
+  - [**Landsat**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Brazil_mosaics_landsat_v1.py)
+  - [**Sentinel2**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Brazil_mosaics_sentinel2_v1.py)
+- [**Chile**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Chile_mosaics_landsat_v1.py)
+- Colômbia
+- [**Dem. Rep. Congo**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_DRC_mosaics_collection_1_landsat_v1.py)
+- Ecuador
+- [**Escudo das Guianas (Guiana, Guiana Francesa e Suriname)**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Guianas_mosaics_landsat_v1.py)
+- [**India**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_India_mosaics_collection_1_landsat_v2.py)
+- [**Indonesia**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Indonesia_mosaics_collection_1_landsat_v1.py)
+- [**Mexico**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Mexico_mosaics_collection_1_landsat_v1.py)
+- [**Paraguay**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Paraguay_mosaics_collection_1_landsat_v1.py)
+- [**Peru**](https://github.com/mapbiomas/countries-mosaics/blob/main/countries/mapbiomas_Peru_mosaics_collection_1_landsat_v1.py)
+- Uruguay
+- Venezuela
