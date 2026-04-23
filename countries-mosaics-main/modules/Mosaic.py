@@ -102,6 +102,20 @@ def getMosaic(
     bandsAmp = bands.map(lambda band:
                          ee.String(band).cat('_amp')
                          )
+        
+    # Create band name suffixes for percentile-based min and max
+    bandsMin = bands.map(lambda band:
+                         ee.String(band).cat('_min')
+                         )
+
+    bandsMax = bands.map(lambda band:
+                         ee.String(band).cat('_max')
+                         )
+                
+    bandsStd = bands.map(lambda band:
+                    ee.String(band).cat('_stdDev')
+                    )
+
 
     # ========================================================================
     # DRY SEASON PROCESSING
@@ -154,18 +168,35 @@ def getMosaic(
         .rename(bandsWet)
 
     # Minimum value mosaic across all images
-    mosaicMin = collection.reduce(ee.Reducer.min())
+    mosaicMin = collection.reduce(ee.Reducer.percentile([5])) \
+        .rename(bandsMin)
 
     # Maximum value mosaic across all images
-    mosaicMax = collection.reduce(ee.Reducer.max())
+    mosaicMax = collection.reduce(ee.Reducer.percentile([95])) \
+        .rename(bandsMax)
 
     # Amplitude mosaic (difference between max and min)
     # High amplitude often indicates seasonal crops or deciduous vegetation
     mosaicAmp = mosaicMax.subtract(mosaicMin)\
         .rename(bandsAmp)
 
-    # Standard deviation mosaic (temporal variability)
-    mosaicStdDev = collection.reduce(ee.Reducer.stdDev())
+    """
+    NOTE:
+    The *_stdDev bands actually represent Median Absolute Deviation (MAD),
+    not standard deviation. This change improves robustness to outliers
+    and compositing noise while preserving backward compatibility.
+    """
+    # Median image (used as reference)
+    medianImage = collection.reduce(ee.Reducer.median()).rename(bands)
+
+    # Absolute deviation from median
+    collectionAbsDev = collection.map(
+        lambda image: image.subtract(medianImage).abs()
+    )
+
+    # Median of absolute deviations (MAD)
+    mosaicStdDev = collectionAbsDev.reduce(ee.Reducer.median()) \
+        .rename(bandsStd)
 
     # ========================================================================
     # COMBINE ALL BANDS INTO FINAL MOSAIC
